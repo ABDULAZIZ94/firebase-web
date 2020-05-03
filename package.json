@@ -1,0 +1,14 @@
+{
+  "name": "firebase-web",
+  "version": "1.0.0",
+  "description": "experiment of firebase using nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "abdulazizabdulnoor@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "firebase-admin": "^8.11.0"
+  }
+}
