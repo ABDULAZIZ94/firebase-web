@@ -8,12 +8,30 @@ admin.initializeApp({
 
 let db = admin.firestore();
 
-db.collection('tutorial_tags').where('tag','==','angular').get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      console.log(doc.id, '=>', doc.data());
-    });
-  })
-  .catch((err) => {
-    console.log('Error getting documents', err);
-  });
+var tag = 'angular';
+
+db.collection('tutorial_tags').where('tag','==',tag).get().then( (snapshot) => {
+    snapshot.forEach( (doc) => { 
+      let id = doc.id; 
+      let cumulative = doc.data().cumulative + 1 
+
+      console.log('id is: ',id, 'cumulative is: '+cumulative);
+      if(id!=null)
+      db.collection('tutorial_tags').doc(id).update({'cumulative': cumulative})
+
+      db.collection('tutorial_tags').where('tag','==',tag).get().then( (snapshot) => {
+        snapshot.forEach( (doc) => { console.log(doc.id , '=>' , doc.data() )} );
+      });
+    } );
+})
+
+
+// db.collection('tutorial_tags').where('tag','==','angular').get()
+//   .then((snapshot) => {
+//     snapshot.forEach((doc) => {
+//       console.log(doc.id, '=>', doc.data());
+//     });
+//   })
+//   .catch((err) => {
+//     console.log('Error getting documents', err);
+//   });
