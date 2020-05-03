@@ -8,7 +8,7 @@ admin.initializeApp({
 
 let db = admin.firestore();
 
-db.collection('tutorials').get()
+db.collection('tutorial_tags').where('tag','==','angular').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
       console.log(doc.id, '=>', doc.data());
