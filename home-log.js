@@ -1,28 +1,19 @@
 const admin = require('firebase-admin');  
 let serviceAccount = require('./key/admin-key.json');
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-});
-
-
+admin.initializeApp({credential: admin.credential.cert(serviceAccount)});
 let db = admin.firestore();
-//cd
-// user sigup
 let iterators =  Array.from({length:10},(v,k)=>k+1)
 timestamp=admin.firestore.FieldValue.serverTimestamp();
+for(i in iterators){
+    log_info = `angular tutorial composed by ${i}`;
+    db.collection('logs').add({'log':log_info, 'timestamp': timestamp});
+}
 
-// for(i in iterators){
-//     log_info = `angular tutorial composed by ${i}`;
-//     db.collection('logs').add({'log':log_info, 'timestamp': timestamp});
-// }
-
-
-db.collection('logs').orderBy('timestamp','desc').limit(5).get().then( (snapshot) =>  {
-    snapshot.forEach( (doc) => {
-        console.log(doc.id, ' => ', doc.data());
-    });
-});
+// db.collection('logs').orderBy('timestamp','desc').limit(5).get().then( (snapshot) =>  {
+//     snapshot.forEach( (doc) => {
+//         console.log(doc.id, ' => ', doc.data());
+//     });
+// });
 
 // var tag = 'angular';
 // db.collection('tutorial_tags').where('tag','==',tag).get().then( (snapshot) => {
