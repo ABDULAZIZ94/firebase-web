@@ -18,12 +18,11 @@ console.log(hash_id);
 // console.log(data);
 
 //ok
+var tags = '{"angular":0,"code":0,"css":0,"html5":0,"laravel":0,"php":0,"python":0,"vuejs":0,"wordpress":0}';
+var log = '{"logs":[]}';
 var data = '{ "'+hash_id+'" :{"tag":"code","title":"How to Code"}}';
-try{
-  db.collection('hashes').doc('0').set(JSON.parse(data),{merge:true});
-}catch(err){
-  
-}
+var data2 = '{ "tags": '+tags+'}';
+db.collection('logs').doc('0').set(JSON.parse(data2),{merge:true});
 
 
 //read ok
