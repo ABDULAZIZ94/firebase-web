@@ -1,5 +1,5 @@
-export class Hash{
-    tag = "";
-    title = "";
-    timestamp="";
+
+class Hash{
+    hash = new Array();
 }
+module.exports = Hash;

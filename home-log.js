@@ -2,18 +2,24 @@ const admin = require('firebase-admin');
 let serviceAccount = require('./key/admin-key.json');
 admin.initializeApp({credential: admin.credential.cert(serviceAccount)});
 let db = admin.firestore();
-let iterators =  Array.from({length:10},(v,k)=>k+1)
-timestamp=admin.firestore.FieldValue.serverTimestamp();
-for(i in iterators){
-    log_info = `angular tutorial composed by ${i}`;
-    db.collection('logs').add({'log':log_info, 'timestamp': timestamp});
-}
 
-// db.collection('logs').orderBy('timestamp','desc').limit(5).get().then( (snapshot) =>  {
-//     snapshot.forEach( (doc) => {
-//         console.log(doc.id, ' => ', doc.data());
+// let iterators =  Array.from({length:10},(v,k)=>k+1)
+// timestamp=admin.firestore.FieldValue.serverTimestamp();
+
+// for(i in iterators){
+//     log_info = `angular tutorial composed by ${i}`;
+//     db.collection('logs').add({'log':log_info, 'timestamp': timestamp});
+// }
+
+
+
+// db.collection('logs').doc('0').collection('log').add({log:'a usep sleep'});
+// // .orderBy('timestamp','desc').limit(5)
+// db.collection('logs').doc('0').listCollections().then(collections => {
+//     collections.forEach(collection => {
+//       console.log('Found subcollection with id:', collection.id);
 //     });
-// });
+//   });
 
 // var tag = 'angular';
 // db.collection('tutorial_tags').where('tag','==',tag).get().then( (snapshot) => {
